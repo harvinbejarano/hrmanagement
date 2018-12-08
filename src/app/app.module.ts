@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectModule } from './project/project.module';
+import { ProjectService } from './project.service';
 
 @NgModule({
 	declarations: [ AppComponent ],
@@ -22,7 +23,7 @@ import { ProjectModule } from './project/project.module';
 		EmployeeModule,
 		ProjectModule,
 	],
-	providers: [],
+	providers: [ProjectService],
 	bootstrap: [ AppComponent ],
 })
 export class AppModule {}

@@ -23,9 +23,9 @@ export class AppComponent {
 		//this.http.get(this.url2).subscribe(console.log);
 
 		//All
-		this.service.getAll().subscribe((data) => {
-			console.log(data);
-		});
+		// this.service.getAll().subscribe((data) => {
+		// 	console.log(data);
+		// });
 
 		//Create
 		/*let emp: Employee = { id: 1, name: 'Robert Galarga' };
@@ -39,9 +39,9 @@ export class AppComponent {
 		});*/
 
 		//Delete
-		this.service.delete(1).subscribe((data) => {
-			console.log(data);
-		});
+		// this.service.delete(1).subscribe((data) => {
+		// 	console.log(data);
+		// });
 
 		/*this.service.getById(1).subscribe((data) => {
 			console.log(data);
