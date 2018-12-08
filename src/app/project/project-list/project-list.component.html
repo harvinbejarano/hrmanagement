@@ -1,4 +1,15 @@
-<table mat-table
+<button color="primary"
+        mat-raised-button
+        *ngIf="displayList"
+        (click)="onNewProject()">
+  <mat-icon>add</mat-icon>
+  New Project
+</button>
+<br>
+<br>
+
+<div *ngIf="displayList">
+    <table mat-table
        [dataSource]="projectTableDataSource"
        class="mat-elevation-z8">
 
@@ -24,3 +35,22 @@
   <tr mat-row
       *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</div>
+
+<div *ngIf="!displayList">
+    <form [formGroup]="form"
+            (ngSubmit)="onFormSubMit($event)"  >
+    
+            <mat-form-field>
+                <input matInput  formControlName="name" placeholder="Name:">
+            </mat-form-field>
+
+        
+    <br>
+    <button color="primary" type="submit"
+            mat-raised-button>
+            <mat-icon>save</mat-icon>
+    </button>
+    </form>
+    
+</div>

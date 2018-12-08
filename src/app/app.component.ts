@@ -3,7 +3,7 @@ import { Employee } from './employee.interface';
 import { EmployeeService } from './employee.service';
 import { HttpClient } from '@angular/common/http';
 import { Project } from './project.interface.';
-import { ProjectService } from './project.service';
+import { ProjectService } from './project/services/project.service';
 
 @Component({
 	selector: 'app-root',
@@ -11,7 +11,7 @@ import { ProjectService } from './project.service';
 	styleUrls: [ './app.component.css' ],
 })
 export class AppComponent {
-	title = 'hrmanagement';
+	title = 'Hr Management';
 	url = 'app/employes';
 	url2 = 'app/projects';
 
