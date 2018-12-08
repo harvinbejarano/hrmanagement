@@ -38,7 +38,6 @@ export class ProjectListComponent implements OnInit {
 
 		this.loadProjectData();
 		this.displayList = true;
-		
 		console.log(event);
 	}
 
