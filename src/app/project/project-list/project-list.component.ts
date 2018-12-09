@@ -17,13 +17,19 @@ export class ProjectListComponent implements OnInit {
 	displayedColumns: string[] = [
 		'id',
 		'name',
+		'teamsize',
+		'clientname',
+		'actions'
 	];
 	form: FormGroup;
-
+	submitAction: string = 'new';
 
 	constructor(private projectService: ProjectService, private fb: FormBuilder) {
 		this.form = this.fb.group({
-			name:['',[Validators.required]],
+			id:null,
+			name: ['', [Validators.required]],
+			teamsize: 0,
+			clientname:['', [Validators.required]],
 		});
 	}
 
@@ -31,19 +37,36 @@ export class ProjectListComponent implements OnInit {
 		this.loadProjectData();
 	}
 
-	onFormSubMit(event) {
-		this.projectService.create(this.form.value).subscribe((data) => {
-			this.form.clearAsyncValidators();
-		 });
-
+	onFormSubMit() {
+		if (this.submitAction === 'new') {
+			this.projectService.create(this.form.value).subscribe();	
+		}
+		else {
+			this.projectService.update(this.form.value).subscribe();	
+		}
+		this.form.reset();
 		this.loadProjectData();
 		this.displayList = true;
-		console.log(event);
 	}
 
 	onNewProject() {
 		this.displayList = !this.displayList;
 	}
+
+	EditRow(row:Project) {
+		this.displayList = false;
+		this.form.patchValue(row);
+		this.submitAction = 'edit'
+	}
+
+	DeleteRow(row:Project) {
+		this.projectService.delete(row.id).subscribe(() => { 
+			this.form.reset();
+		});
+		this.loadProjectData();
+		this.displayList = true;
+	}
+
 	loadProjectData() {
 		this.projectService.getAll()
 			.subscribe((data: Project[]) =>
@@ -52,6 +75,5 @@ export class ProjectListComponent implements OnInit {
 				this.projectTableDataSource.data = this.projectTable;
 			});
 	}
-
 
 }

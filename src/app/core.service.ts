@@ -29,14 +29,14 @@ export class CoreService implements InMemoryDbService {
 			{
 				id: 1,
 				name: 'Project 1',
-				/*teamsize: 0,
-				clientname: 'xabc',*/
+				teamsize: 0,
+				clientname: 'Company 1',
 			},
 			{
 				id: 2,
 				name: 'Project 2',
-				/*teamsize: 0,
-				clientname: 'xabc',*/
+				teamsize: 0,
+				clientname: 'Company 2',
 			},
 		];
 		return { employes, projects };

@@ -20,7 +20,7 @@ export class ProjectService {
 	}
 
 	update(project: Project) {
-		this.http
+		return this.http
 			.put(this.url + '/' + project.id.toString(), project)
 			.pipe(
 				switchMap(() => this.http.get<Project[]>(this.url)),

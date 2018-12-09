@@ -6,6 +6,7 @@ import { EmployeeModule } from './employee/employee.module';
 import { HomeModule } from './home/home.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClientModule } from '@angular/common/http';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectModule } from './project/project.module';
@@ -21,6 +22,7 @@ import { ProjectModule } from './project/project.module';
 		HomeModule,
 		EmployeeModule,
 		ProjectModule,
+		MatToolbarModule,
 	],
 	providers: [],
 	bootstrap: [ AppComponent ],
