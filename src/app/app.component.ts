@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Employee } from './employee.interface';
-import { EmployeeService } from './employee.service';
 import { HttpClient } from '@angular/common/http';
 import { Project } from './project.interface.';
 import { ProjectService } from './project/services/project.service';
@@ -16,8 +15,7 @@ export class AppComponent {
 	url2 = 'app/projects';
 
 	constructor(
-		private http: HttpClient,
-		private service: ProjectService,
+		private http: HttpClient
 	) {
 		//this.http.get(this.url).subscribe(console.log);
 		//this.http.get(this.url2).subscribe(console.log);

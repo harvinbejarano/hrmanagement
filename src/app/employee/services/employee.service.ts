@@ -19,7 +19,7 @@ export class EmployeeService {
 	}
 
 	update(employee: Employee) {
-		this.http
+		return  this.http
 			.put(this.url + '/' + employee.id.toString(), employee)
 			.pipe(
 				switchMap(() => this.http.get<Employee[]>(this.url)),

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -11,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [ ProjectListComponent ],
-	imports: [CommonModule, MatTableModule,MatButtonModule,MatIconModule,ReactiveFormsModule,MatFormFieldModule,MatInputModule],
+	imports: [CommonModule, MatTableModule,MatButtonModule,MatIconModule,ReactiveFormsModule,MatFormFieldModule,MatInputModule,MatCardModule],
 	providers:[ProjectService],
 	exports: [ ProjectListComponent ],
 })
