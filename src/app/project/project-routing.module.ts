@@ -1,9 +1,14 @@
+import { AuthGuard } from '../auth.guard';
 import { NgModule } from '@angular/core';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-	{ path: 'project', component: ProjectListComponent },
+	{
+		path: 'project',
+		component: ProjectListComponent,
+		canActivate: [ AuthGuard ],
+	},
 ];
 
 @NgModule({
