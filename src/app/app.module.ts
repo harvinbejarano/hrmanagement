@@ -1,4 +1,5 @@
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { CoreService } from './core.service';
@@ -18,11 +19,12 @@ import { ProjectModule } from './project/project.module';
 		HttpClientModule,
 		HttpClientInMemoryWebApiModule.forRoot(CoreService),
 		NoopAnimationsModule,
-		AuthenticationModule,
+		MatToolbarModule,
 		HomeModule,
 		EmployeeModule,
 		ProjectModule,
-		MatToolbarModule,
+		AuthenticationModule,
+		AppRoutingModule,
 	],
 	providers: [],
 	bootstrap: [ AppComponent ],

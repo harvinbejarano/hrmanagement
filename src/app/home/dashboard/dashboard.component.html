@@ -9,11 +9,13 @@
   <mat-card-content>
     <div class="flex-container">
 
-      <button mat-raised-button>
+      <button mat-raised-button
+              (click)="onOptionClick('employee')">
         <mat-icon>person</mat-icon>
       </button>
 
-      <button mat-raised-button>
+      <button mat-raised-button
+              (click)="onOptionClick('project')">
         <mat-icon>account_balance</mat-icon>
       </button>
 

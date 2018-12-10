@@ -1,108 +1,111 @@
-<button color="primary"
-        mat-raised-button
-        *ngIf="displayList"
-        (click)="onNewProject()">
-  <mat-icon>add</mat-icon>
-  New Project
-</button>
-<br>
-<br>
+<div class="project">
+  <button color="primary"
+          mat-raised-button
+          *ngIf="displayList"
+          (click)="onNewProject()">
+    <mat-icon>add</mat-icon>
+    New Project
+  </button>
+  <br>
+  <br>
 
-<!-- LIST -->
-<div *ngIf="displayList">
-  <table mat-table
-         [dataSource]="projectTableDataSource"
-         class="mat-elevation-z8">
+  <!-- LIST -->
+  <div *ngIf="displayList">
+    <table mat-table
+           [dataSource]="projectTableDataSource"
+           class="mat-elevation-z8">
 
-    <ng-container matColumnDef="id">
-      <th mat-header-cell
-          *matHeaderCellDef> <b>Id</b> </th>
-      <td mat-cell
-          *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell
+            *matHeaderCellDef> <b>Id</b> </th>
+        <td mat-cell
+            *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell
-          *matHeaderCellDef><b>Name</b> </th>
-      <td mat-cell
-          *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell
+            *matHeaderCellDef><b>Name</b> </th>
+        <td mat-cell
+            *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="teamsize">
-      <th mat-header-cell
-          *matHeaderCellDef><b>Team size</b> </th>
-      <td mat-cell
-          *matCellDef="let element"> {{element.teamsize}} </td>
-    </ng-container>
+      <ng-container matColumnDef="teamsize">
+        <th mat-header-cell
+            *matHeaderCellDef><b>Team size</b> </th>
+        <td mat-cell
+            *matCellDef="let element"> {{element.teamsize}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="clientname">
-      <th mat-header-cell
-          *matHeaderCellDef><b>Client name</b> </th>
-      <td mat-cell
-          *matCellDef="let element"> {{element.clientname}} </td>
-    </ng-container>
+      <ng-container matColumnDef="clientname">
+        <th mat-header-cell
+            *matHeaderCellDef><b>Client name</b> </th>
+        <td mat-cell
+            *matCellDef="let element"> {{element.clientname}} </td>
+      </ng-container>
 
 
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell
-          *matHeaderCellDef><b>...</b> </th>
-      <td mat-cell
-          *matCellDef="let element">
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell
+            *matHeaderCellDef><b>...</b> </th>
+        <td mat-cell
+            *matCellDef="let element">
 
-        <button class="action"
-                mat-icon-button
-                color="accent"
-                (click)="EditRow(element)">
-          <mat-icon>edit</mat-icon>
+          <button class="action"
+                  mat-icon-button
+                  color="accent"
+                  (click)="EditRow(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          &nbsp;
+          <button class="action"
+                  color="accent"
+                  mat-icon-button
+                  (click)="DeleteRow(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row
+          *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row
+          *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <!-- FORM -->
+  <div *ngIf="!displayList">
+    <mat-card class="myform-card">
+      <form [formGroup]="form"
+            (ngSubmit)="onFormSubMit()">
+
+        <mat-form-field class="form">
+          <input matInput
+                 formControlName="name"
+                 placeholder="Name:">
+        </mat-form-field>
+
+        <mat-form-field class="form">
+          <input matInput
+                 formControlName="teamsize"
+                 placeholder="Team size:">
+        </mat-form-field>
+
+        <mat-form-field class="form">
+          <input matInput
+                 formControlName="clientname"
+                 placeholder="Client name:">
+        </mat-form-field>
+
+        <br>
+        <button color="primary"
+                type="submit"
+                mat-raised-button>
+          <mat-icon>save</mat-icon>
         </button>
-        &nbsp;
-        <button class="action"
-                color="accent"
-                mat-icon-button
-                (click)="DeleteRow(element)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+      </form>
+    </mat-card>
 
-    <tr mat-header-row
-        *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row
-        *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</div>
-
-<!-- FORM -->
-<div *ngIf="!displayList">
-  <mat-card class="myform-card">
-    <form [formGroup]="form"
-          (ngSubmit)="onFormSubMit()">
-
-      <mat-form-field class="form">
-        <input matInput
-               formControlName="name"
-               placeholder="Name:">
-      </mat-form-field>
-
-      <mat-form-field class="form">
-        <input matInput
-               formControlName="teamsize"
-               placeholder="Team size:">
-      </mat-form-field>
-
-      <mat-form-field class="form">
-        <input matInput
-               formControlName="clientname"
-               placeholder="Client name:">
-      </mat-form-field>
-
-      <br>
-      <button color="primary"
-              type="submit"
-              mat-raised-button>
-        <mat-icon>save</mat-icon>
-      </button>
-    </form>
-  </mat-card>
+  </div>
 
 </div>

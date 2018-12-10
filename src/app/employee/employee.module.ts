@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeService } from './services/employee.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -11,11 +12,19 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [EmployeeListComponent],
-  imports: [
-    CommonModule,MatTableModule,MatButtonModule,MatIconModule,ReactiveFormsModule,MatFormFieldModule,MatInputModule,MatCardModule
-  ],
-  providers: [EmployeeService],
-  exports:[EmployeeListComponent]
+	declarations: [ EmployeeListComponent ],
+	imports: [
+		CommonModule,
+		MatTableModule,
+		MatButtonModule,
+		MatIconModule,
+		ReactiveFormsModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatCardModule,
+		EmployeeRoutingModule,
+	],
+	providers: [ EmployeeService ],
+	exports: [ EmployeeListComponent ],
 })
-export class EmployeeModule { }
+export class EmployeeModule {}
