@@ -1,4 +1,4 @@
-import { Employee } from './employee.interface';
+import { Employee } from 'src/app/employee.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
