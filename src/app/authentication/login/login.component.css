@@ -1,0 +1,11 @@
+.login {
+  max-width: 300px;
+  margin-top: 10%;
+  margin-left: 35%;
+  height: 200px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
