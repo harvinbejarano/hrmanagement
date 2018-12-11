@@ -5,6 +5,29 @@
 
   <mat-card-content>
     <div class="flex-container">
+      <form [formGroup]="form"
+            (ngSubmit)="onFormSubMit()">
+
+        <mat-form-field class="form">
+          <input matInput
+                 formControlName="username"
+                 placeholder="User:">
+        </mat-form-field>
+
+        <mat-form-field class="form">
+          <input type="password"
+                 matInput
+                 formControlName="password"
+                 placeholder="Password:">
+        </mat-form-field>
+
+        <br>
+        <button color="primary"
+                type="submit"
+                mat-raised-button>
+          Login
+        </button>
+      </form>
     </div>
   </mat-card-content>
 
