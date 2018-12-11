@@ -31,6 +31,34 @@
             *matCellDef="let element"> {{element.name}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="company">
+        <th mat-header-cell
+            *matHeaderCellDef><b>Company</b> </th>
+        <td mat-cell
+            *matCellDef="let element"> {{element.company}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="age">
+        <th mat-header-cell
+            *matHeaderCellDef><b>Age</b> </th>
+        <td mat-cell
+            *matCellDef="let element"> {{element.age}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="birthday">
+        <th mat-header-cell
+            *matHeaderCellDef><b>Birthday</b> </th>
+        <td mat-cell
+            *matCellDef="let element"> {{element.birthday}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="favoritecolor">
+        <th mat-header-cell
+            *matHeaderCellDef><b>Favorite color</b> </th>
+        <td mat-cell
+            *matCellDef="let element"> {{element.favoritecolor}} </td>
+      </ng-container>
+
 
 
 
@@ -90,7 +118,8 @@
         <br>
         <button color="primary"
                 type="submit"
-                mat-raised-button>
+                mat-raised-button
+                [disabled]="!form.valid">
           <mat-icon>save</mat-icon>
         </button>
       </form>

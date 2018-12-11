@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
@@ -32,6 +33,7 @@ import { ProjectModule } from './project/project.module';
 		AuthenticationModule,
 		AppRoutingModule,
 		CoreModule,
+		MatListModule,
 	],
 	providers: [ AuthGuard ],
 	bootstrap: [ AppComponent ],

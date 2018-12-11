@@ -20,12 +20,16 @@ export class LoginComponent implements OnInit {
 			username: [ '', [ Validators.required ] ],
 			password: [ '', [ Validators.required ] ],
 		});
+
+		this.form.patchValue({
+			username: 'admin',
+			password: 'admin',
+		});
 	}
 
 	ngOnInit() {}
 
 	onFormSubMit() {
-		debugger;
 		this.authService.login(
 			this.form.get('username').value,
 			this.form.get('password').value,

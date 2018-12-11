@@ -100,7 +100,8 @@
         <br>
         <button color="primary"
                 type="submit"
-                mat-raised-button>
+                mat-raised-button
+                [disabled]="!form.valid">
           <mat-icon>save</mat-icon>
         </button>
       </form>

@@ -24,7 +24,8 @@
         <br>
         <button color="primary"
                 type="submit"
-                mat-raised-button>
+                mat-raised-button
+                [disabled]="!form.valid">
           Login
         </button>
       </form>

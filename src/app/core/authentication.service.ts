@@ -11,9 +11,11 @@ import { User } from '../user.interface';
 export class AuthenticationService {
 	url = 'app/users';
 	users: User[];
+	userisLogged = false;
+	showToolbar = true;
 
 	constructor(private http: HttpClient, private router: Router) {
-		localStorage.setItem('userIsloggedIn', '0');
+		//localStorage.setItem('userIsloggedIn', '0');
 	}
 
 	login(user: string, password: string) {
@@ -24,15 +26,21 @@ export class AuthenticationService {
 					element.username === user &&
 					element.password === password
 				) {
-					localStorage.setItem('userIsloggedIn', '1');
+					this.userisLogged = true;
+					this.showToolbar = true;
 					this.router.navigate([ 'dashboard' ]);
 				}
 			});
 		});
 	}
 
+	logout() {
+		this.userisLogged = false;
+		this.showToolbar = false;
+		this.router.navigate([ 'login' ]);
+	}
+
 	isLoggedIn(): boolean {
-		let isllogged = localStorage.getItem('userIsloggedIn');
-		return isllogged === '0' ? false : true;
+		return this.userisLogged;
 	}
 }
