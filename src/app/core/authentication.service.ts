@@ -3,6 +3,7 @@ import { exists } from 'fs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../user.interface';
 
@@ -13,9 +14,9 @@ export class AuthenticationService {
 	url = 'app/users';
 	users: User[];
 	userisLogged = false;
-	showToolbar = true;
+	loginStatus = new Subject<boolean>();
 
-	constructor(private http: HttpClient, private router: Router) {}
+	constructor(private http: HttpClient) {}
 
 	login(usernameToValidate: string, passwordToValidate: string) {
 		return this.http.get<User[]>(this.url).pipe(
@@ -26,32 +27,22 @@ export class AuthenticationService {
 				this.userisLogged = foundUser
 					? foundUser.password === passwordToValidate
 					: false;
+				this.loginStatus.next(true);
 				return this.userisLogged;
 			}),
 		);
-
-		// 	(data) => {
-		// 	this.users = data;
-		// 	this.users.forEach((element) => {
-		// 		if (
-		// 			element.username === user &&
-		// 			element.password === password
-		// 		) {
-		// 			this.userisLogged = true;
-		// 			this.showToolbar = true;
-		// 			this.router.navigate([ 'dashboard' ]);
-		// 		}
-		// 	});
-		// });
 	}
 
 	logout() {
 		this.userisLogged = false;
-		this.showToolbar = false;
-		this.router.navigate([ 'login' ]);
+		this.loginStatus.next(false);
 	}
 
 	isLoggedIn(): boolean {
 		return this.userisLogged;
+	}
+
+	getloginStatus(): Observable<boolean> {
+		return this.loginStatus.asObservable();
 	}
 }

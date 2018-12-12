@@ -33,7 +33,7 @@ export class EmployeeListComponent implements OnInit {
 
 	constructor(
 		private employeeService: EmployeeService,
-		private projectService : ProjectService,
+		private projectService: ProjectService,
 		private fb: FormBuilder,
 	) {
 		this.form = this.fb.group({
@@ -62,7 +62,7 @@ export class EmployeeListComponent implements OnInit {
 	}
 
 	loadProjects() {
-		this.projectService.getAll().subscribe((data: Project[]) => { 
+		this.projectService.getAll().subscribe((data: Project[]) => {
 			this.projects = data;
 		});
 	}
@@ -74,14 +74,18 @@ export class EmployeeListComponent implements OnInit {
 	onFormSubMit() {
 		let projectId = Number(this.form.get('project').value);
 		if (this.submitAction === 'new') {
-			this.employeeService.create(this.form.value)
-				.subscribe(() => { 
-					this.projectService.getById(projectId)
-						.subscribe((project: Project) => { 
+			this.employeeService
+				.create(this.form.value)
+				.subscribe(() => {
+					this.projectService
+						.getById(projectId)
+						.subscribe((project: Project) => {
 							project.teamsize++;
-							this.projectService.update(project).subscribe();
-				    })
-			    });
+							this.projectService
+								.update(project)
+								.subscribe();
+						});
+				});
 		} else {
 			this.employeeService.update(this.form.value).subscribe();
 		}
@@ -98,6 +102,12 @@ export class EmployeeListComponent implements OnInit {
 
 	DeleteRow(row: Employee) {
 		this.employeeService.delete(row.id).subscribe(() => {
+			this.projectService
+				.getById(row.project)
+				.subscribe((project: Project) => {
+					project.teamsize--;
+					this.projectService.update(project).subscribe();
+				});
 			this.form.reset();
 		});
 		this.loadEmployeeData();
