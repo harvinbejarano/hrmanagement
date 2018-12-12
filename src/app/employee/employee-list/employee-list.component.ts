@@ -3,6 +3,8 @@ import { Employee } from 'src/app/employee.interface';
 import { EmployeeService } from './../services/employee.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { Project } from 'src/app/project.interface.';
+import { ProjectService } from './../../project/services/project.service';
 
 @Component({
 	selector: 'app-employee-list',
@@ -25,11 +27,13 @@ export class EmployeeListComponent implements OnInit {
 		'project',
 		'actions',
 	];
+	projects: Project[] = [];
 	form: FormGroup;
 	submitAction: string = 'new';
 
 	constructor(
 		private employeeService: EmployeeService,
+		private projectService : ProjectService,
 		private fb: FormBuilder,
 	) {
 		this.form = this.fb.group({
@@ -44,10 +48,11 @@ export class EmployeeListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.loadProjectData();
+		this.loadProjects();
+		this.loadEmployeeData();
 	}
 
-	loadProjectData() {
+	loadEmployeeData() {
 		this.employeeService
 			.getAll()
 			.subscribe((data: Employee[]) => {
@@ -56,18 +61,32 @@ export class EmployeeListComponent implements OnInit {
 			});
 	}
 
+	loadProjects() {
+		this.projectService.getAll().subscribe((data: Project[]) => { 
+			this.projects = data;
+		});
+	}
+
 	onNewEmployee() {
 		this.displayList = !this.displayList;
 	}
 
 	onFormSubMit() {
+		let projectId = Number(this.form.get('project').value);
 		if (this.submitAction === 'new') {
-			this.employeeService.create(this.form.value).subscribe();
+			this.employeeService.create(this.form.value)
+				.subscribe(() => { 
+					this.projectService.getById(projectId)
+						.subscribe((project: Project) => { 
+							project.teamsize++;
+							this.projectService.update(project).subscribe();
+				    })
+			    });
 		} else {
 			this.employeeService.update(this.form.value).subscribe();
 		}
 		this.form.reset();
-		this.loadProjectData();
+		this.loadEmployeeData();
 		this.displayList = true;
 	}
 
@@ -81,7 +100,11 @@ export class EmployeeListComponent implements OnInit {
 		this.employeeService.delete(row.id).subscribe(() => {
 			this.form.reset();
 		});
-		this.loadProjectData();
+		this.loadEmployeeData();
+		this.displayList = true;
+	}
+
+	cancel() {
 		this.displayList = true;
 	}
 }

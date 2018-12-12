@@ -15,7 +15,6 @@ export class AuthenticationService {
 	showToolbar = true;
 
 	constructor(private http: HttpClient, private router: Router) {
-		//localStorage.setItem('userIsloggedIn', '0');
 	}
 
 	login(user: string, password: string) {

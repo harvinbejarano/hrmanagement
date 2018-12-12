@@ -1,4 +1,5 @@
 <div class="project">
+  <h1>Projects</h1>
   <button color="primary"
           mat-raised-button
           *ngIf="displayList"
@@ -103,6 +104,13 @@
                 mat-raised-button
                 [disabled]="!form.valid">
           <mat-icon>save</mat-icon>
+        </button>
+        &nbsp;
+        <button color="primary"
+                type="submit"
+                mat-raised-button
+                (click)="cancel()">
+          <mat-icon>cancel</mat-icon>
         </button>
       </form>
     </mat-card>

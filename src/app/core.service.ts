@@ -17,21 +17,21 @@ export class CoreService implements InMemoryDbService {
 		let employes: Employee[] = [
 			{
 				id: 1,
-				name: 'HarvyBj',
-				/*	company: 'Signos Software',
-				age: 38,
+				name: 'Harvy Bj',
+				company: 'Signos Software',
+				age: 20,
 				birthday: '1980-01-01',
-				favoritecolor: 'blue',
-				project: 1,*/
+				favoritecolor: '#F0FFF0',
+				project: 1,
 			},
 			{
 				id: 2,
-				name: 'Igor',
-				/*company: 'Yuxi',
-				age: 40,
+				name: 'Igor Mejia',
+				company: '1A Company',
+				age: 25,
 				birthday: '1979-01-01',
-				favoritecolor: 'yellow',
-				project: 1,*/
+				favoritecolor: '#F5FFFA',
+				project: 1,
 			},
 		];
 
@@ -39,7 +39,7 @@ export class CoreService implements InMemoryDbService {
 			{
 				id: 1,
 				name: 'Project 1',
-				teamsize: 0,
+				teamsize: 2,
 				clientname: 'Company 1',
 			},
 			{

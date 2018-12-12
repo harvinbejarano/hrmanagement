@@ -75,5 +75,8 @@ export class ProjectListComponent implements OnInit {
 				this.projectTableDataSource.data = this.projectTable;
 			});
 	}
+	cancel() {
+		this.displayList = true;
+	}
 
 }
