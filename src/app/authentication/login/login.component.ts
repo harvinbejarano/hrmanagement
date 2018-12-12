@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 	form: FormGroup;
+	userIsValid = true;
 
 	constructor(
 		private fb: FormBuilder,
 		private authService: AuthenticationService,
+		private router: Router,
 	) {
 		this.form = this.fb.group({
 			username: [ '', [ Validators.required ] ],
@@ -30,9 +32,17 @@ export class LoginComponent implements OnInit {
 	ngOnInit() {}
 
 	onFormSubMit() {
-		this.authService.login(
-			this.form.get('username').value,
-			this.form.get('password').value,
-		);
+		this.authService
+			.login(
+				this.form.get('username').value,
+				this.form.get('password').value,
+			)
+			.subscribe((userIsValid) => {
+				if (userIsValid) {
+					this.router.navigate([ 'dashboard' ]);
+				} else {
+					this.userIsValid = false;
+				}
+			});
 	}
 }
