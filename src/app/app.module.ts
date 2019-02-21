@@ -16,9 +16,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectModule } from './project/project.module';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
-	declarations: [ AppComponent ],
+	declarations: [ AppComponent, CommentsComponent ],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
